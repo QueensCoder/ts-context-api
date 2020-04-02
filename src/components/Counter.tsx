@@ -3,35 +3,6 @@ import React, { useReducer } from "react";
 const INCREMENT = "INCREMENT";
 const DECREMENT = "DECREMENT";
 
-type State = {
-  count: number;
-};
-
-type CounterProps = {
-  incrementStep?: number;
-  decrementStep?: number;
-};
-
-// read only allows access to the variables but
-// makes them immutable
-type Increment = {
-  readonly type: "INCREMENT";
-  readonly incrementStep: number;
-};
-
-type Decrement = {
-  readonly type: "DECREMENT";
-  readonly decrementStep: number;
-};
-
-// union between two types
-type Actions = Increment | Decrement;
-
-// type reducerProps = (state: State, action: Actions) => State
-
-type incrementProps = (incrementStep: number) => Actions;
-type decrementProps = (decrementStep: number) => Actions;
-
 const increment: incrementProps = incrementStep => ({
   type: INCREMENT,
   incrementStep
@@ -42,7 +13,7 @@ const decrement: decrementProps = decrementStep => ({
   decrementStep
 });
 
-const reducer = (state: State, action: Actions): State => {
+const reducer: reducerProps = (state, action) => {
   switch (action.type) {
     case INCREMENT:
       return { count: state.count + action.incrementStep };
