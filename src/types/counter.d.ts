@@ -24,6 +24,6 @@ type Actions = Increment | Decrement;
 
 // type reducerProps = (state: State, action: Actions) => State
 
-type incrementProps = (incrementStep: number) => Actions;
-type decrementProps = (decrementStep: number) => Actions;
-type reducerProps = (state: State, action: Actions) => State;
+type incrementType = (incrementStep: number) => Actions;
+type decrementType = (decrementStep: number) => Actions;
+type reducerType = (state: State, action: Actions) => State;

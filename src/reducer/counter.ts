@@ -1,17 +1,17 @@
 const INCREMENT = "INCREMENT";
 const DECREMENT = "DECREMENT";
 
-export const increment: incrementProps = incrementStep => ({
+export const increment: incrementType = incrementStep => ({
   type: INCREMENT,
   incrementStep
 });
 
-export const decrement: decrementProps = decrementStep => ({
+export const decrement: decrementType = decrementStep => ({
   type: DECREMENT,
   decrementStep
 });
 
-const reducer: reducerProps = (state, action) => {
+const reducer: reducerType = (state, action) => {
   switch (action.type) {
     case INCREMENT:
       return { count: state.count + action.incrementStep };

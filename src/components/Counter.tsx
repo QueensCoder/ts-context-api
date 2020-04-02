@@ -1,13 +1,20 @@
 import React, { useReducer } from "react";
 import reducer, { increment, decrement } from "../reducer/counter";
 
+// start count at 0
+const intialState: State = {
+  count: 0
+};
+
 const Counter: React.FC<CounterProps> = ({
   incrementStep = 0,
   decrementStep = 0
 }) => {
-  const [state, dispatch] = useReducer<React.Reducer<State, Actions>>(reducer, {
-    count: 0
-  });
+  // app still works without useReducer props being specificed
+  const [state, dispatch] = useReducer<React.Reducer<State, Actions>>(
+    reducer,
+    intialState
+  );
   return (
     <div>
       <h1>Count {state.count}</h1>
