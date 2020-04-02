@@ -29,6 +29,19 @@ type Actions = Increment | Decrement;
 
 // type reducerProps = (state: State, action: Actions) => State
 
+type incrementProps = (incrementStep: number) => Actions;
+type decrementProps = (decrementStep: number) => Actions;
+
+const increment: incrementProps = incrementStep => ({
+  type: INCREMENT,
+  incrementStep
+});
+
+const decrement: decrementProps = decrementStep => ({
+  type: DECREMENT,
+  decrementStep
+});
+
 const reducer = (state: State, action: Actions): State => {
   switch (action.type) {
     case INCREMENT:
@@ -51,8 +64,12 @@ const Counter: React.FC<CounterProps> = ({
     <div>
       <h1>Count {state.count}</h1>
       <div>
-        <button>Increment {incrementStep}</button>
-        <button>Decrement {decrementStep}</button>
+        <button onClick={() => dispatch(increment(incrementStep))}>
+          Increment {incrementStep}
+        </button>
+        <button onClick={() => dispatch(decrement(decrementStep))}>
+          Decrement {decrementStep}
+        </button>
       </div>
     </div>
   );
