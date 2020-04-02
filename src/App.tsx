@@ -1,10 +1,13 @@
 import React from "react";
 import Counter from "./components/Counter";
+import CountContextProvider from "./context/counter";
 
 const App: React.FC = () => {
   return (
     <>
-      <Counter incrementStep={1} decrementStep={1} />
+      <CountContextProvider>
+        <Counter incrementStep={1} decrementStep={1} />
+      </CountContextProvider>
     </>
   );
 };
