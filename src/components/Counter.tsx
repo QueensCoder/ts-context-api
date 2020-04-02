@@ -1,28 +1,5 @@
 import React, { useReducer } from "react";
-
-const INCREMENT = "INCREMENT";
-const DECREMENT = "DECREMENT";
-
-const increment: incrementProps = incrementStep => ({
-  type: INCREMENT,
-  incrementStep
-});
-
-const decrement: decrementProps = decrementStep => ({
-  type: DECREMENT,
-  decrementStep
-});
-
-const reducer: reducerProps = (state, action) => {
-  switch (action.type) {
-    case INCREMENT:
-      return { count: state.count + action.incrementStep };
-    case DECREMENT:
-      return { count: state.count - action.decrementStep };
-    default:
-      return state;
-  }
-};
+import reducer, { increment, decrement } from "../reducer/counter";
 
 const Counter: React.FC<CounterProps> = ({
   incrementStep = 0,

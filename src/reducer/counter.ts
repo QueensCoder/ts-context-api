@@ -1,19 +1,25 @@
-export {};
-// const INCREMENT: action = "INCREMENT";
-// const DECREMENT: action = "DECREMENT";
+const INCREMENT = "INCREMENT";
+const DECREMENT = "DECREMENT";
 
-// export const increment: actionCreator = () => ({ type: INCREMENT });
-// export const decrement: actionCreator = () => ({ type: DECREMENT });
+export const increment: incrementProps = incrementStep => ({
+  type: INCREMENT,
+  incrementStep
+});
 
-// // const reducer: counterReducer = (action, initialState = count) => {
-// //   switch (action.type) {
-// //     case INCREMENT:
-// //       return count + 1;
-// //     case DECREMENT:
-// //       return count - 1;
-// //     default:
-// //       return count;
-// //   }
-// // };
+export const decrement: decrementProps = decrementStep => ({
+  type: DECREMENT,
+  decrementStep
+});
 
-// export default reducer;
+const reducer: reducerProps = (state, action) => {
+  switch (action.type) {
+    case INCREMENT:
+      return { count: state.count + action.incrementStep };
+    case DECREMENT:
+      return { count: state.count - action.decrementStep };
+    default:
+      return state;
+  }
+};
+
+export default reducer;
