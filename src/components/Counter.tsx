@@ -7,6 +7,13 @@ const intialState: State = {
   count: 0
 };
 
+interface ContextType {
+  state: State;
+  increment: (incrementStep: number) => void;
+  decrement: (decrementStep: number) => void;
+  dispatch: (action: Actions) => void;
+}
+
 const Counter: React.FC<CounterProps> = ({
   incrementStep = 0,
   decrementStep = 0
@@ -17,11 +24,11 @@ const Counter: React.FC<CounterProps> = ({
     intialState
   );
 
-  const contextTest = useContext(CountContext);
-  console.log(contextTest.state);
-
+  // const { state, dispatch, increment, decrement } = useContext(CountContext);
+  console.log(decrement);
   return (
     <div>
+      hi
       <h1>Count {state.count}</h1>
       <div>
         <button onClick={() => dispatch(increment(incrementStep))}>
