@@ -1,5 +1,6 @@
 import React, { useReducer, useContext } from "react";
 import reducer, { increment, decrement } from "../reducer/counter";
+import { CountContext } from "../context/counter";
 
 // start count at 0
 const intialState: State = {
@@ -15,6 +16,10 @@ const Counter: React.FC<CounterProps> = ({
     reducer,
     intialState
   );
+
+  const contextTest = useContext(CountContext);
+  console.log(contextTest.state);
+
   return (
     <div>
       <h1>Count {state.count}</h1>

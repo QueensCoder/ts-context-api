@@ -5,24 +5,27 @@ import React, {
   ReactNode
 } from "react";
 import reducer, { increment, decrement } from "../reducer/counter";
-type ContextState = {
-  count: number;
-};
+
+interface ContextProps {
+  state: State;
+  increment: (incrementStep: number) => void;
+  decrement: (decrementStep: number) => void;
+  dispatch: (action: Actions) => void;
+}
 
 interface ProviderProps {
   children: ReactNode | ReactNodeArray;
 }
 
-interface ContextProps {
-  // count: number;
-  // increment: (incrementStep: number) => void;
-  // decrement: (decrementStep: number) => void;
-}
+const initialState: State = { count: 0 };
 
-export const CountContext = createContext<ContextProps>({});
+export const CountContext = createContext<Partial<ContextProps>>({});
 
 const CountContextProvider: React.FC<ProviderProps> = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, { count: 0 });
+  const [state, dispatch] = useReducer<React.Reducer<State, Actions>>(
+    reducer,
+    initialState
+  );
   return (
     <CountContext.Provider value={{ state, dispatch, increment, decrement }}>
       {children}
