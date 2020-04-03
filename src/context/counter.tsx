@@ -1,16 +1,31 @@
-import React, { createContext, useReducer } from "react";
+import React, {
+  createContext,
+  useReducer,
+  ReactNodeArray,
+  ReactNode
+} from "react";
 import reducer, { increment, decrement } from "../reducer/counter";
+type ContextState = {
+  count: number;
+};
 
-type ContextProps = {};
-type CountContextProviderType = (props: Object) => React.FC;
+interface ProviderProps {
+  children: ReactNode | ReactNodeArray;
+}
 
-export const CountContext = createContext<Partial<ContextProps>>({});
+interface ContextProps {
+  // count: number;
+  // increment: (incrementStep: number) => void;
+  // decrement: (decrementStep: number) => void;
+}
 
-const CountContextProvider = (props: any) => {
+export const CountContext = createContext<ContextProps>({});
+
+const CountContextProvider: React.FC<ProviderProps> = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, { count: 0 });
   return (
     <CountContext.Provider value={{ state, dispatch, increment, decrement }}>
-      {props.children}
+      {children}
     </CountContext.Provider>
   );
 };

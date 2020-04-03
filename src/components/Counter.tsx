@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useContext } from "react";
 import reducer, { increment, decrement } from "../reducer/counter";
 
 // start count at 0
