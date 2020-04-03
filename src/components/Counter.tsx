@@ -1,18 +1,11 @@
 import React, { useReducer, useContext } from "react";
 import reducer, { increment, decrement } from "../reducer/counter";
-import { CountContext } from "../context/counter";
+import { useCount } from "../context/counter";
 
 // start count at 0
 const intialState: State = {
   count: 0
 };
-
-interface ContextType {
-  state: State;
-  increment: (incrementStep: number) => void;
-  decrement: (decrementStep: number) => void;
-  dispatch: (action: Actions) => void;
-}
 
 const Counter: React.FC<CounterProps> = ({
   incrementStep = 0,
@@ -24,8 +17,16 @@ const Counter: React.FC<CounterProps> = ({
     intialState
   );
 
-  // const { state, dispatch, increment, decrement } = useContext(CountContext);
-  console.log(decrement);
+  const consumedContext = useCount();
+  // first 4 logs work
+  console.log(consumedContext.dispatch);
+  console.log(consumedContext.state);
+  console.log(consumedContext.increment);
+  console.log(consumedContext.decrement);
+
+  //  does not work linter says Object is possibly 'undefined'
+  console.log(consumedContext.state.count);
+
   return (
     <div>
       hi

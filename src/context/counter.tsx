@@ -3,8 +3,9 @@ import React, {
   useReducer,
   ReactNodeArray,
   ReactNode,
-  Reducer,
-  FC
+  FC,
+  useContext,
+  Reducer
 } from "react";
 import reducer, { increment, decrement } from "../reducer/counter";
 
@@ -31,12 +32,11 @@ const CountContextProvider: FC<ProviderProps> = ({ children }) => {
     reducer,
     initialState
   );
-
+  const value = { state, increment, decrement, dispatch };
   return (
-    <CountContext.Provider value={{ state, dispatch, increment, decrement }}>
-      {children}
-    </CountContext.Provider>
+    <CountContext.Provider value={value}>{children}</CountContext.Provider>
   );
 };
 
+export const useCount = () => useContext(CountContext);
 export default CountContextProvider;
